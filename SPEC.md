@@ -8,12 +8,12 @@
 ## Feature 1: @oletizi/mulder-claude-config
 
 - [x] There is a typescript-based npm module in this pnpm workspace
-      modules/mulder-claude-config
+  modules/mulder-claude-config
 
 - [x] That module contains tooling to build and maintain
-      project-specific claude config using
-      git@github.com:johnlanda/agentic-workflow-wizard.git as a
-      starting point
+  project-specific claude config using
+  git@github.com:johnlanda/agentic-workflow-wizard.git as a
+  starting point
 
 ## Feature 2: @oletizi/mulder-release
 
@@ -25,4 +25,21 @@ Tooling to support cutting a release in agentic projects:
 
 - [x] There is a typescript-based npm module in this pnpm workspace at modules/mulder-release
 
-[SPEC-MULDER-CLAUDE-CONFIG.md](modules/mulder-claude-config/SPEC-MULDER-CLAUDE-CONFIG.md)
+## Feature 3: @oletizi/mulder-workplans
+
+Tooling to manage workplan documents. Workplans are plans for agents
+to do work--especially across sessions and/or contexts:
+
+* An active workplan may be used to keep agent(s) on task and to scope
+  their activities.
+
+* When updated by the agents as they implement, a workplan serves as
+  documentation of progress through the work.
+
+* When archived, a workplan serves documentation of what was built (or
+  not).
+
+- [ ] There is a typescript-based npm module in this pnpm workspace at modules/mulder-workplans
+- [ ] There is a README.md in that module that briefly describes the purpose of the module
+- [ ] There is a SPEC-MULDER-WORKPLANS.md with a specification (similar to the other SPEC*.md files in this monorepo)
+  for the features to implement.
