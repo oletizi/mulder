@@ -90,6 +90,16 @@ export class OneClickRelease {
       }
     }
 
+    if (published.length === 0) {
+      const rootPackagePath = join(this.rootDir, 'package.json');
+      if (existsSync(rootPackagePath)) {
+        const rootPkg: PackageJson = JSON.parse(readFileSync(rootPackagePath, 'utf-8'));
+        if (!rootPkg.private) {
+          published.push(rootPkg);
+        }
+      }
+    }
+
     return published;
   }
 
@@ -180,7 +190,11 @@ See individual package READMEs for usage details.`;
     const newVersion = this.bumpAllVersions(options.bumpType);
 
     console.log('\nStep 2: Clean and build');
-    this.execCommand('pnpm clean');
+    try {
+      this.execCommand('pnpm clean');
+    } catch (error) {
+      console.log('⚠️  No clean script found, skipping...');
+    }
     this.execCommand('pnpm build');
 
     if (!options.skipTests) {
@@ -199,10 +213,14 @@ See individual package READMEs for usage details.`;
 
     const publishedModules = this.getPublishedModules();
 
-    console.log(`\nStep 5: Publishing ${publishedModules.length} modules to npm...`);
+    console.log(`\nStep 5: Publishing ${publishedModules.length} package(s) to npm...`);
 
     for (const pkg of publishedModules) {
-      const modulePath = join(this.modulesDir, pkg.name.split('/').pop() || '');
+      const isRootPackage = publishedModules.length === 1 && !existsSync(this.modulesDir);
+      const modulePath = isRootPackage
+        ? this.rootDir
+        : join(this.modulesDir, pkg.name.split('/').pop() || '');
+
       console.log(`\n  Publishing ${pkg.name}@${pkg.version}...`);
 
       const publishCmd = options.dryRun

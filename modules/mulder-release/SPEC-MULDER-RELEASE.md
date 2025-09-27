@@ -12,6 +12,7 @@ Feature 1: "One Click" Publish and Release
   associated github releases.
 - [x] The implementation is a clean, self-contained rewrite of the `pnpm release` command in
   ~/ol_dsp/modules/audio-control/ that can be run from the host project when this module is installed.
+- [x] This module has an npm script to release itself.
 
 ## Usage
 
