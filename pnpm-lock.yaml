@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@oletizi/mulder-claude-config':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@oletizi/mulder-release':
         specifier: ^0.1.6
         version: 0.1.6
@@ -30,6 +33,9 @@ importers:
 
   modules/mulder-release:
     dependencies:
+      '@oletizi/mulder-release':
+        specifier: ^0.1.6
+        version: 0.1.6
       commander:
         specifier: ^12.0.0
         version: 12.1.0
@@ -48,6 +54,10 @@ importers:
         version: 5.9.2
 
 packages:
+
+  '@oletizi/mulder-claude-config@0.1.2':
+    resolution: {integrity: sha512-hOxyFQevRXnSSB1IBRpp2fmRniNRTFqLoXydSnRHGf9aD9Krwa6Gx7WzqeiRysXNEQU9zxygM+FQXjyfQbnt+A==}
+    hasBin: true
 
   '@oletizi/mulder-release@0.1.6':
     resolution: {integrity: sha512-ByPjMcOSIpMa3ZZtg+/f/lAXXJsc73fMJ1hoRWTk4wYe0/Be55cJIOVTvxx9PzTIwL9ssPCxtNpYsiMvhvs5ZA==}
@@ -77,6 +87,10 @@ packages:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
 snapshots:
+
+  '@oletizi/mulder-claude-config@0.1.2':
+    dependencies:
+      commander: 12.1.0
 
   '@oletizi/mulder-release@0.1.6':
     dependencies:

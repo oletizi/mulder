@@ -19,6 +19,7 @@
     "release": "node node_modules/@oletizi/mulder-release/dist/cli.js release"
   },
   "devDependencies": {
+    "@oletizi/mulder-claude-config": "^0.1.2",
     "@oletizi/mulder-release": "^0.1.6"
   }
 }
