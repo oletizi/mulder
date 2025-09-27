@@ -1,6 +1,6 @@
 {
   "name": "@oletizi/mulder-release",
-  "version": "0.1.6",
+  "version": "0.1.1",
   "private": false,
   "description": "Tooling to support cutting releases in agentic projects",
   "main": "dist/index.js",
@@ -31,6 +31,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@oletizi/mulder-release": "^0.1.6",
     "commander": "^12.0.0",
     "semver": "^7.0.0"
   }

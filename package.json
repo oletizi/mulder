@@ -1,6 +1,6 @@
 {
   "name": "@oletizi/mulder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Monorepo for mulder tooling",
   "repository": {
@@ -15,6 +15,10 @@
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "release": "node node_modules/@oletizi/mulder-release/dist/cli.js release"
+  },
+  "devDependencies": {
+    "@oletizi/mulder-release": "^0.1.6"
   }
 }

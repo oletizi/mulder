@@ -24,3 +24,5 @@ Tooling to support cutting a release in agentic projects:
 * Creating associated github releases
 
 - [x] There is a typescript-based npm module in this pnpm workspace at modules/mulder-release
+
+[SPEC-MULDER-CLAUDE-CONFIG.md](modules/mulder-claude-config/SPEC-MULDER-CLAUDE-CONFIG.md)

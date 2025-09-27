@@ -1,6 +1,7 @@
 {
   "name": "@oletizi/mulder-claude-config",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "private": false,
   "description": "Tooling to build and maintain project-specific claude config",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,6 +23,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@oletizi/mulder-release": "^0.1.6",
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
   },
