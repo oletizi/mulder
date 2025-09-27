@@ -1,6 +1,6 @@
 {
   "name": "@oletizi/mulder-workplans",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": false,
   "description": "Tooling to manage workplan documents for agentic projects",
   "main": "dist/index.js",
