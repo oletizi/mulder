@@ -61,7 +61,9 @@ to build:
 * Specs can serve as a source of truth for agentic architecture and
   code reviewers to validate as-built project state.
 
-- [ ] There is a typescript-based npm module in this pnpm workspace at modules/mulder-specs
-- [ ] There is a README.md in that module that briefly describes the purpose of the module
-- [ ] There is a SPEC-MULDER-SPECS.md with a specification (similar to the other SPEC*.md files in this monorepo)
+- [x] There is a typescript-based npm module in this pnpm workspace at modules/mulder-specs
+- [x] There is a README.md in that module that briefly describes the purpose of the module
+- [x] There is a SPEC-MULDER-SPECS.md with a specification (similar to the other SPEC*.md files in this monorepo)
   for the features to implement.
+
+[SPEC-MULDER-SPECS.md](modules/mulder-specs/SPEC-MULDER-SPECS.md)

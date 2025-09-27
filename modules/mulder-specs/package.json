@@ -1,0 +1,36 @@
+{
+  "name": "@oletizi/mulder-specs",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Tooling to manage project specifications for agentic projects",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "bin": {
+    "mulder-specs": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"No tests yet\" && exit 0",
+    "lint": "echo \"No linting yet\" && exit 0",
+    "typecheck": "tsc --noEmit",
+    "release": "mulder-release release"
+  },
+  "keywords": [
+    "specification",
+    "planning",
+    "agent",
+    "documentation",
+    "architecture"
+  ],
+  "author": "Orion Letizi",
+  "license": "MIT",
+  "devDependencies": {
+    "@oletizi/mulder-release": "^0.1.6",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
+}

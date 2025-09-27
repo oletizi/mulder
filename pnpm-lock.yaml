@@ -53,6 +53,22 @@ importers:
         specifier: ^5.0.0
         version: 5.9.2
 
+  modules/mulder-specs:
+    dependencies:
+      commander:
+        specifier: ^12.0.0
+        version: 12.1.0
+    devDependencies:
+      '@oletizi/mulder-release':
+        specifier: ^0.1.6
+        version: 0.1.6
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.17
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.2
+
   modules/mulder-workplans:
     dependencies:
       commander:
