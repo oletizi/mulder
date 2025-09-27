@@ -1,13 +1,15 @@
 import { execSync } from 'child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, readdirSync, statSync, rmSync } from 'fs';
 import { join } from 'path';
 import type { ClaudeConfig, ConfigManagerOptions, ProjectRequirements } from './types.js';
+import { BASE_CONFIG_TEMPLATE } from './base-config.js';
 
 export interface IConfigManager {
   initialize(): Promise<void>;
   generateConfig(requirements: ProjectRequirements): Promise<ClaudeConfig>;
   saveConfig(config: ClaudeConfig, outputPath: string): Promise<void>;
   loadConfig(path: string): Promise<ClaudeConfig>;
+  installWizardWithBaseConfig(projectPath: string): Promise<void>;
 }
 
 export class ConfigManager implements IConfigManager {
@@ -90,5 +92,54 @@ export class ConfigManager implements IConfigManager {
 
     const content = readFileSync(configPath, 'utf-8');
     return JSON.parse(content) as ClaudeConfig;
+  }
+
+  async installWizardWithBaseConfig(projectPath: string): Promise<void> {
+    if (!this.initialized) {
+      await this.initialize();
+    }
+
+    const wizardPath = join(this.tempDir, 'wizard');
+    const targetClaudeDir = join(projectPath, '.claude');
+
+    if (!existsSync(targetClaudeDir)) {
+      mkdirSync(targetClaudeDir, { recursive: true });
+    }
+
+    const wizardClaudeOutputDir = join(wizardPath, '.claude-output');
+    if (existsSync(wizardClaudeOutputDir)) {
+      this.copyDirectoryRecursive(wizardClaudeOutputDir, targetClaudeDir);
+    }
+
+    const baseConfigPath = join(projectPath, 'CLAUDE.md');
+    writeFileSync(baseConfigPath, BASE_CONFIG_TEMPLATE);
+
+    if (existsSync(this.tempDir)) {
+      rmSync(this.tempDir, { recursive: true, force: true });
+    }
+
+    const claudeOutputDir = join(projectPath, '.claude-output');
+    if (existsSync(claudeOutputDir)) {
+      rmSync(claudeOutputDir, { recursive: true, force: true });
+    }
+  }
+
+  private copyDirectoryRecursive(src: string, dest: string): void {
+    if (!existsSync(dest)) {
+      mkdirSync(dest, { recursive: true });
+    }
+
+    const entries = readdirSync(src);
+
+    for (const entry of entries) {
+      const srcPath = join(src, entry);
+      const destPath = join(dest, entry);
+
+      if (statSync(srcPath).isDirectory()) {
+        this.copyDirectoryRecursive(srcPath, destPath);
+      } else {
+        copyFileSync(srcPath, destPath);
+      }
+    }
   }
 }

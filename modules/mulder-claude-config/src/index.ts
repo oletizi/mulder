@@ -7,3 +7,4 @@ export type {
   ProjectRequirements,
   ConfigManagerOptions,
 } from './types.js';
+export { BASE_CONFIG_TEMPLATE } from './base-config.js';

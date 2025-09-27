@@ -69,4 +69,23 @@ program
     }
   });
 
+program
+  .command('install-wizard')
+  .description('Install agentic workflow wizard to .claude/ and base config to project root')
+  .option('-p, --path <path>', 'Project path', process.cwd())
+  .action(async (options) => {
+    const manager = new ConfigManager();
+    try {
+      console.log('Installing agentic workflow wizard with base config...');
+      await manager.installWizardWithBaseConfig(options.path);
+      console.log('✓ Installation complete:');
+      console.log(`  - Base config: ${options.path}/CLAUDE.md`);
+      console.log(`  - Wizard files: ${options.path}/.claude/`);
+      console.log('  - Cleaned up temporary directories');
+    } catch (error) {
+      console.error('Error:', error instanceof Error ? error.message : String(error));
+      process.exit(1);
+    }
+  });
+
 program.parse();
