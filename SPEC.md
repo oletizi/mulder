@@ -39,7 +39,29 @@ to do work--especially across sessions and/or contexts:
 * When archived, a workplan serves documentation of what was built (or
   not).
 
-- [ ] There is a typescript-based npm module in this pnpm workspace at modules/mulder-workplans
+- [x] There is a typescript-based npm module in this pnpm workspace at modules/mulder-workplans
+- [x] There is a README.md in that module that briefly describes the purpose of the module
+- [x] There is a SPEC-MULDER-WORKPLANS.md with a specification (similar to the other SPEC*.md files in this monorepo)
+  for the features to implement.
+
+[SPEC-MULDER-WORKPLANS.md](modules/mulder-workplans/SPEC-MULDER-WORKPLANS.md)
+
+## Feature 4: @oletizi/mulder-specs
+
+Tooling to manage project specifications that define what agents are
+to build:
+
+* Specs may be used by agents to build workplans for themselves that
+  are properly scoped.
+
+* Specs serve as a document of what is to be built
+
+* When properly maintained, specs serve as a document of what *has* been built
+
+* Specs can serve as a source of truth for agentic architecture and
+  code reviewers to validate as-built project state.
+
+- [ ] There is a typescript-based npm module in this pnpm workspace at modules/mulder-specs
 - [ ] There is a README.md in that module that briefly describes the purpose of the module
-- [ ] There is a SPEC-MULDER-WORKPLANS.md with a specification (similar to the other SPEC*.md files in this monorepo)
+- [ ] There is a SPEC-MULDER-SPECS.md with a specification (similar to the other SPEC*.md files in this monorepo)
   for the features to implement.
