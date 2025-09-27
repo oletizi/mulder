@@ -1,6 +1,6 @@
 {
   "name": "@oletizi/mulder-claude-config",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Tooling to build and maintain project-specific claude config",
   "main": "dist/index.js",

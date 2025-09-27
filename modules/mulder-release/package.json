@@ -1,6 +1,6 @@
 {
   "name": "@oletizi/mulder-release",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Tooling to support cutting releases in agentic projects",
   "main": "dist/index.js",
