@@ -12,11 +12,16 @@ NOTES:
 - **MVP-First Philosophy**: This tooling enforces an MVP (Minimum Viable Product) and incremental development approach
   to prevent agents from implementing advanced features before core functionality is working. Features are explicitly
   categorized and prioritized to ensure foundational work is completed first.
+- **One-Click Philosophy**: Commands should be terse with sensible defaults. Basic tasks require minimal typing and few
+  arguments. Context is automatically gleaned from the host project using Claude in non-interactive mode. The tool
+  should "just work" without requiring the user to specify obvious information that can be inferred from the codebase.
 
 ## Feature 1: Specification Creation
 
 - [ ] Create a new specification document with project context
 - [ ] Support markdown format for specification documents
+- [ ] Use Claude in non-interactive mode to analyze existing codebase and infer project context
+- [ ] Automatically detect project name, type, and technologies from package.json, README, and code structure
 - [ ] Generate specification from template with sections:
     - Project overview
     - MVP definition (core features required for minimal functionality)
@@ -29,21 +34,24 @@ NOTES:
 - [ ] Automatically categorize features as MVP, Phase 1, Phase 2, etc. based on dependencies
 - [ ] Detect and flag advanced features that depend on incomplete core features
 - [ ] Generate phased implementation roadmap starting with MVP
+- [ ] Default to creating spec in project root as SPEC.md (or SPEC-{PROJECT}.md)
 
 ## Feature 2: Specification Management
 
-- [ ] List all specifications in a project
-- [ ] Show current active specification
+- [ ] List all specifications in a project (auto-discover SPEC*.md files)
+- [ ] Show current active specification (default to SPEC.md if it exists)
 - [ ] Version specifications (track changes over time)
 - [ ] Link specifications to related workplans
 - [ ] View features by priority phase (MVP, Phase 1, Phase 2, etc.)
 - [ ] Enforce that MVP features are completed before Phase 1 features can be started
 - [ ] Warn when agents attempt to implement non-MVP features before MVP is complete
 - [ ] Reorder feature priorities when dependencies change
+- [ ] Auto-detect which spec file to use based on context (no need to specify path)
 
 ## Feature 3: Progress Tracking
 
 - [ ] Mark requirements as pending, in-progress, or completed
+- [ ] Use Claude in non-interactive mode to scan codebase and auto-detect completed features
 - [ ] Track implementation status against specification
 - [ ] Generate compliance reports (what's built vs. what's specified)
 - [ ] Highlight deviations from specification
@@ -51,17 +59,20 @@ NOTES:
 - [ ] Show which phase the project is currently in based on completed features
 - [ ] Block marking advanced features as "in-progress" when MVP is incomplete
 - [ ] Generate phase-based progress reports (MVP: 80%, Phase 1: 20%, Phase 2: 0%)
+- [ ] Auto-update spec checkboxes based on detected implementations (with user confirmation)
 
 ## Feature 4: Validation
 
 - [ ] Validate project state against specification
+- [ ] Use Claude in non-interactive mode to analyze codebase for validation
 - [ ] Check for missing implementations
 - [ ] Report on specification coverage
 - [ ] Integrate with code review workflows
-- [ ] Validate that MVP features are implemented before advanced features
+- [ ] Validate that MVP features are implemented before advanced features (default behavior)
 - [ ] Detect "scope creep" - advanced features implemented without MVP completion
 - [ ] Generate warnings when code implements features not in current phase
 - [ ] Suggest moving premature features to appropriate phase
+- [ ] Auto-detect which spec to validate against (no need to specify)
 
 ## Feature 5: CLI Tool
 
@@ -76,21 +87,24 @@ NOTES:
 # Install
 npm install --save-dev @oletizi/mulder-specs
 
-# Create new specification with MVP focus
-npx mulder-specs create "Project Name" --template mvp
+# Create new specification (auto-detects project context, creates SPEC.md)
+npx mulder-specs init
 
-# Update requirement status
-npx mulder-specs update --requirement "req-id" --status completed
+# Update progress (auto-scans codebase and updates spec checkboxes)
+npx mulder-specs update
 
-# View MVP progress
-npx mulder-specs progress --phase mvp
+# View current status (shows MVP progress by default)
+npx mulder-specs status
 
-# Generate phase-based compliance report
-npx mulder-specs report --format markdown --by-phase
+# Validate (auto-detects spec, enforces MVP-first by default)
+npx mulder-specs validate
 
-# Validate project against spec (checks MVP-first compliance)
-npx mulder-specs validate --spec "spec-id" --enforce-mvp
+# Generate report (auto-formats, shows by phase)
+npx mulder-specs report
 
-# Check for scope creep
-npx mulder-specs check-scope-creep
+# Advanced usage (when defaults aren't sufficient)
+npx mulder-specs init --interactive        # Interactive mode for custom spec
+npx mulder-specs status --all-phases       # Show all phases, not just MVP
+npx mulder-specs validate --no-enforce-mvp # Disable MVP enforcement
+npx mulder-specs update --dry-run          # Preview changes without writing
 ```
