@@ -1,17 +1,41 @@
 # Mulder Workplans Module
 
-Tooling to manage workplan documents for agentic projects.
+## Description
+
+Tooling to manage WORKPLAN documents for agentic projects.
+
+WORKPLAN are documents created by agents to describe the steps they will take to implement a SPEC. A SPEC is a
+specification document like this one that specifies the requirements, features, and behaviors of the system in
+question. See @oletizi/mulder-specs for details.
+
+WORKPLANS are used by agents as guideposts for how to implement a feature or requirement. Agents should keep a WORKPLAN
+up to date with implementation notes to document the progress of the implementation.
+
+When implementation is complete, the WORKPLAN should be archived to a well-known location as a record of what has been
+implemented; or, in the case of WORKPLAN abandonment, what has NOT been implemented.
+
+This module is a library to facilitate the creation and management workflow of WORKPLANS based on project SPEC document.
+
+## Workplan Lifecycle
+
+A WORKPLAN is created by instructing an agent to examine a SPEC document and have its team of sub-agents write a
+WORKPLAN document to implement one or more FEATURES or REQUIREMENTS in the SPEC.
+
+A new WORKPLAN document has the following naming convention:
+
+WORKPLAN-<FEATURE|REQUIREMENT>.md
 
 ## Feature 1: Workplan Creation
 
-- [ ] Create a new workplan document with project context
+- [ ] Library has an interface function to create a new workplan document for one or more FEATURES or REQUIREMENTS in a
+  project SPEC document.
 - [ ] Support markdown format for workplan documents
 - [ ] Generate workplan from template with sections:
-  - Project overview
-  - Goals and objectives
-  - Task breakdown
-  - Progress tracking
-  - Notes and decisions
+    - Project overview
+    - Goals and objectives
+    - Task breakdown
+    - Progress tracking
+    - Notes and decisions
 
 ## Feature 2: Workplan Management
 

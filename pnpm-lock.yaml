@@ -78,6 +78,9 @@ importers:
       '@oletizi/mulder-release':
         specifier: ^0.1.6
         version: 0.1.6
+      '@oletizi/mulder-specs':
+        specifier: ^0.6.0
+        version: 0.6.0
       '@types/node':
         specifier: ^20.0.0
         version: 20.19.17
@@ -93,6 +96,10 @@ packages:
 
   '@oletizi/mulder-release@0.1.6':
     resolution: {integrity: sha512-ByPjMcOSIpMa3ZZtg+/f/lAXXJsc73fMJ1hoRWTk4wYe0/Be55cJIOVTvxx9PzTIwL9ssPCxtNpYsiMvhvs5ZA==}
+    hasBin: true
+
+  '@oletizi/mulder-specs@0.6.0':
+    resolution: {integrity: sha512-HqhPgEHWyZC9OKZlUrIeAyxrCUSnMbJWx3jHGFvBNrkA3oO6ODcf0vbGaCbti9RUQaT52SOke+IKmlH4LmZVJw==}
     hasBin: true
 
   '@types/node@20.19.17':
@@ -128,6 +135,10 @@ snapshots:
     dependencies:
       commander: 12.1.0
       semver: 7.7.2
+
+  '@oletizi/mulder-specs@0.6.0':
+    dependencies:
+      commander: 12.1.0
 
   '@types/node@20.19.17':
     dependencies:

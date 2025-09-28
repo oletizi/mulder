@@ -26,6 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "@oletizi/mulder-release": "^0.1.6",
+    "@oletizi/mulder-specs": "^0.6.0",
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
   },
