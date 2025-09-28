@@ -28,8 +28,7 @@ WORKPLAN-<FEATURE|REQUIREMENT>.md
 ## Feature 1: Workplan Creation
 
 - [ ] Library has an interface create function to create a new WORKPLAN document for one or more FEATURES or
-  REQUIREMENTS in a
-  project SPEC document.
+  REQUIREMENTS in a project SPEC document.
 - [ ] The create function uses claude code in non-interactive mode, prompting it to have its team of sub-agents
   generate a WORKPLAN from a canonical template with sections:
     - Feature/requirement description, including goals and objectives
@@ -41,7 +40,7 @@ WORKPLAN-<FEATURE|REQUIREMENT>.md
 ## Feature 2: Workplan Management
 
 - [ ] List all workplans in a project
-- [ ] Show current active workplan
+- [ ] Show current active workplan(s)
 - [ ] Archive completed workplans
 - [ ] Restore archived workplans
 
