@@ -27,15 +27,16 @@ WORKPLAN-<FEATURE|REQUIREMENT>.md
 
 ## Feature 1: Workplan Creation
 
-- [ ] Library has an interface function to create a new workplan document for one or more FEATURES or REQUIREMENTS in a
+- [ ] Library has an interface create function to create a new WORKPLAN document for one or more FEATURES or
+  REQUIREMENTS in a
   project SPEC document.
-- [ ] Support markdown format for workplan documents
-- [ ] Generate workplan from template with sections:
-    - Project overview
-    - Goals and objectives
+- [ ] The create function uses claude code in non-interactive mode, prompting it to have its team of sub-agents
+  generate a WORKPLAN from a canonical template with sections:
+    - Feature/requirement description, including goals and objectives
     - Task breakdown
     - Progress tracking
     - Notes and decisions
+- [ ] The new WORKPLAN document has the naming convention: WORKPLAN-<FEATURE|REQUIREMENT signifier>
 
 ## Feature 2: Workplan Management
 
