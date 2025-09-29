@@ -1,0 +1,137 @@
+{
+  "name": "canonical-workplan",
+  "version": "1.0.0",
+  "description": "Canonical workplan template for feature and requirement implementation",
+  "header": "# WORKPLAN-{{featureId}}: {{featureName}}",
+  "sections": [
+    {
+      "id": "feature-description",
+      "title": "Feature Description",
+      "content": "{{featureDescription}}\n\n### Goals & Objectives\n\n{{goals}}",
+      "required": true,
+      "order": 1
+    },
+    {
+      "id": "task-breakdown",
+      "title": "Task Breakdown",
+      "content": "{{taskBreakdown}}",
+      "required": true,
+      "order": 2
+    },
+    {
+      "id": "progress-tracking",
+      "title": "Progress Tracking",
+      "content": "### Current Status\n\n- **Phase**: {{currentPhase}}\n- **Blockers**: {{blockers}}\n- **Next Step**: {{nextStep}}\n\n### Milestones\n\n{{milestones}}",
+      "required": true,
+      "order": 3
+    },
+    {
+      "id": "implementation-notes",
+      "title": "Implementation Notes",
+      "content": "### Technical Decisions\n\n{{technicalDecisions}}\n\n### Dependencies\n\n{{dependencies}}\n\n### File Structure\n\n{{fileStructure}}",
+      "required": false,
+      "order": 4
+    },
+    {
+      "id": "notes-decisions",
+      "title": "Notes and Decisions",
+      "content": "### Open Questions\n\n{{openQuestions}}\n\n### Design Rationale\n\n{{designRationale}}\n\n### Future Considerations\n\n{{futureConsiderations}}",
+      "required": false,
+      "order": 5
+    }
+  ],
+  "variables": [
+    {
+      "name": "featureId",
+      "value": "",
+      "required": true
+    },
+    {
+      "name": "featureName",
+      "value": "",
+      "required": true
+    },
+    {
+      "name": "featureDescription",
+      "value": "",
+      "required": true
+    },
+    {
+      "name": "goals",
+      "value": "",
+      "required": true
+    },
+    {
+      "name": "taskBreakdown",
+      "value": "",
+      "required": true
+    },
+    {
+      "name": "currentPhase",
+      "value": "Not Started",
+      "required": false
+    },
+    {
+      "name": "blockers",
+      "value": "None",
+      "required": false
+    },
+    {
+      "name": "nextStep",
+      "value": "Define initial requirements",
+      "required": false
+    },
+    {
+      "name": "milestones",
+      "value": "- [ ] Phase 1: Requirements Analysis\n- [ ] Phase 2: Implementation\n- [ ] Phase 3: Testing & Documentation",
+      "required": false
+    },
+    {
+      "name": "technicalDecisions",
+      "value": "- Use dependency injection pattern for testability\n- All imports must use @/ pattern\n- No fallbacks or mock data outside tests\n- Throw descriptive errors for unimplemented features\n- Keep files under 500 lines",
+      "required": false
+    },
+    {
+      "name": "dependencies",
+      "value": "- TypeScript (strict mode)\n- Jest (for testing)",
+      "required": false
+    },
+    {
+      "name": "fileStructure",
+      "value": "```\nsrc/\n├── interfaces/\n├── services/\n├── utils/\n└── index.ts\n```",
+      "required": false
+    },
+    {
+      "name": "openQuestions",
+      "value": "- No open questions at this time",
+      "required": false
+    },
+    {
+      "name": "designRationale",
+      "value": "- Template-based approach ensures consistency\n- Interface-first design enables testability\n- Dependency injection supports modularity",
+      "required": false
+    },
+    {
+      "name": "futureConsiderations",
+      "value": "- Support for custom templates\n- Integration with version control\n- Automated progress tracking",
+      "required": false
+    }
+  ],
+  "defaults": {
+    "currentPhase": "Not Started",
+    "blockers": "None",
+    "nextStep": "Define initial requirements",
+    "milestones": "- [ ] Phase 1: Requirements Analysis\n- [ ] Phase 2: Implementation\n- [ ] Phase 3: Testing & Documentation",
+    "technicalDecisions": "- Use dependency injection pattern for testability\n- All imports must use @/ pattern\n- No fallbacks or mock data outside tests\n- Throw descriptive errors for unimplemented features\n- Keep files under 500 lines",
+    "dependencies": "- TypeScript (strict mode)\n- Jest (for testing)",
+    "fileStructure": "```\nsrc/\n├── interfaces/\n├── services/\n├── utils/\n└── index.ts\n```",
+    "openQuestions": "- No open questions at this time",
+    "designRationale": "- Template-based approach ensures consistency\n- Interface-first design enables testability\n- Dependency injection supports modularity",
+    "futureConsiderations": "- Support for custom templates\n- Integration with version control\n- Automated progress tracking"
+  },
+  "metadata": {
+    "author": "mulder-workplans",
+    "created": "2024-09-29",
+    "tags": ["workplan", "canonical", "feature", "requirement"]
+  }
+}

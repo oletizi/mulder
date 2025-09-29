@@ -205,6 +205,18 @@ If template sections or required data are missing:
 - Maintain document structure even with incomplete data
 
 Generate a complete, professional workplan document that enables successful feature implementation and project tracking.
+
+## Context Information
+
+- **Workplan ID**: {{workplanId}}
+- **Feature Title**: {{featureTitle}}
+- **Feature Description**: {{featureDescription}}
+- **Priority**: {{priority}}
+- **Deadline**: {{deadline}}
+
+### Task List
+
+{{taskList}}
 `;
 
 export interface TemplatePopulationContext {
@@ -214,6 +226,16 @@ export interface TemplatePopulationContext {
   qualityStandards?: string;
   workplanId?: string;
   featureTitle?: string;
+  featureDescription?: string;
+  taskList?: Array<{
+    id: string;
+    name: string;
+    category: string;
+    estimatedHours: number;
+    dependencies?: string[];
+  }>;
+  priority?: string;
+  deadline?: string;
 }
 
 /**
@@ -223,11 +245,30 @@ export function generateTemplatePopulationPrompt(context?: TemplatePopulationCon
   let prompt = TEMPLATE_POPULATION_PROMPT;
 
   // Replace simple variables
-  if (context?.workplanId) {
-    prompt = prompt.replace('{{workplanId}}', context.workplanId);
+  if (context?.workplanId !== undefined) {
+    prompt = prompt.replaceAll('{{workplanId}}', context.workplanId || '');
   }
-  if (context?.featureTitle) {
-    prompt = prompt.replace('{{featureTitle}}', context.featureTitle);
+  if (context?.featureTitle !== undefined) {
+    prompt = prompt.replaceAll('{{featureTitle}}', context.featureTitle || '');
+  }
+  if (context?.featureDescription !== undefined) {
+    prompt = prompt.replaceAll('{{featureDescription}}', context.featureDescription || '');
+  }
+  if (context?.priority !== undefined) {
+    prompt = prompt.replaceAll('{{priority}}', context.priority || '');
+  }
+  if (context?.deadline !== undefined) {
+    prompt = prompt.replaceAll('{{deadline}}', context.deadline || '');
+  }
+
+  // Format task list
+  if (context?.taskList !== undefined) {
+    const taskListFormatted = context.taskList.map(task => {
+      const hours = task.estimatedHours === 1 ? '1 hour' : `${task.estimatedHours} hours`;
+      const deps = task.dependencies ? ` (depends on: ${task.dependencies.join(', ')})` : '';
+      return `- ${task.name} (${task.category}, ${hours})${deps}`;
+    }).join('\n');
+    prompt = prompt.replaceAll('{{taskList}}', taskListFormatted);
   }
 
   // Handle conditional sections
@@ -255,22 +296,42 @@ export function generateTemplatePopulationPrompt(context?: TemplatePopulationCon
 
 /**
  * Extract workplan ID from feature name following naming convention
- * Converts feature names to WORKPLAN-FEATURE-NAME format
+ * Converts feature names to FEATURE-NAME format (without WORKPLAN- prefix)
  */
-export function generateWorkplanId(featureName: string): string {
-  // Convert to uppercase and replace spaces/special chars with hyphens
-  const sanitized = featureName
-    .toUpperCase()
-    .replace(/[^A-Z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+export function generateWorkplanId(featureName: string, useTimestamp?: boolean): string {
+  if (!featureName || featureName.trim().length === 0) {
+    return useTimestamp ? `WORKPLAN-${Date.now()}` : 'WORKPLAN';
+  }
 
-  return `WORKPLAN-${sanitized}`;
+  // Convert to uppercase and replace spaces/special chars with hyphens
+  let sanitized = featureName
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, '-')  // Replace invalid chars with dashes
+    .replace(/-+/g, '-')          // Collapse multiple dashes
+    .replace(/^-|-$/g, '');       // Remove leading/trailing dashes
+
+  // Limit length to 50 characters for filesystem compatibility
+  if (sanitized.length > 50) {
+    sanitized = sanitized.substring(0, 50).replace(/-$/, '');
+  }
+
+  // Ensure we have a valid identifier
+  if (!sanitized) {
+    return useTimestamp ? `WORKPLAN-${Date.now()}` : 'WORKPLAN';
+  }
+
+  return sanitized;
 }
 
 /**
  * Validate workplan ID format
  */
 export function isValidWorkplanId(workplanId: string): boolean {
-  const pattern = /^WORKPLAN-[A-Z0-9]+(-[A-Z0-9]+)*$/;
+  if (!workplanId || typeof workplanId !== 'string') {
+    return false;
+  }
+
+  // Valid format: uppercase letters, numbers, single hyphens (no leading/trailing hyphens)
+  const pattern = /^[A-Z0-9]+(-[A-Z0-9]+)*$/;
   return pattern.test(workplanId);
 }

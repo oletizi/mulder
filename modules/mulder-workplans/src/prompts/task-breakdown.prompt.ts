@@ -178,6 +178,15 @@ Identify risks at multiple levels:
 - **External risks**: Dependencies, market changes, or organizational changes
 
 Provide realistic mitigation strategies that the team can actually implement.
+
+## Feature Context
+
+- **Feature Name**: {{featureName}}
+- **Feature Description**: {{featureDescription}}
+- **Complexity**: {{complexity}}
+- **Team Size**: {{teamSize}}
+- **Deadline**: {{deadline}}
+- **Technology Stack**: {{techStack}}
 `;
 
 export interface TaskBreakdownContext {
@@ -187,6 +196,10 @@ export interface TaskBreakdownContext {
   teamCapabilities?: string;
   timeConstraints?: string;
   qualityStandards?: string;
+  complexity?: string;
+  teamSize?: string;
+  deadline?: string;
+  techStack?: string;
 }
 
 /**
@@ -196,11 +209,20 @@ export function generateTaskBreakdownPrompt(context?: TaskBreakdownContext): str
   let prompt = TASK_BREAKDOWN_PROMPT;
 
   // Replace simple variables
-  if (context?.featureName) {
-    prompt = prompt.replace('{{featureName}}', context.featureName);
-  }
-  if (context?.featureDescription) {
-    prompt = prompt.replace('{{featureDescription}}', context.featureDescription);
+  const simpleVars = [
+    'featureName',
+    'featureDescription',
+    'complexity',
+    'teamSize',
+    'deadline',
+    'techStack'
+  ] as const;
+
+  for (const varName of simpleVars) {
+    if (context?.[varName] !== undefined) {
+      const value = context[varName] || '';
+      prompt = prompt.replaceAll(`{{${varName}}}`, value);
+    }
   }
 
   // Handle conditional sections
